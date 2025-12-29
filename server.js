@@ -8,6 +8,10 @@ const app=express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});
+
 const transporter=nodemailer.createTransport({
   service:"gmail",
   auth:{user:process.env.EMAIL_USER, pass:process.env.EMAIL_PASS}
@@ -30,3 +34,4 @@ app.post("/send-order-email", async(req,res)=>{
 });
 
 app.listen(5000, ()=>console.log("Server running on port 5000"));
+
